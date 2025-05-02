@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ANnF9wUtZz4=",
+  "success": true,
+  "projectFilePath": "D:\\vypex\\VypexCodingChallenge-master\\VypexCodingChallenge-master\\Vypex.CodingChallenge.Service\\Vypex.CodingChallenge.Domain\\Vypex.CodingChallenge.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\bogus\\35.6.2\\bogus.35.6.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.4\\microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
