@@ -1,7 +1,7 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+/Vypex.CodingChallenge.Service/.vs/*
 /Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.metadata.v9.bin
 /Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.projects.v9.bin
 /Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.strings.v9.bin
