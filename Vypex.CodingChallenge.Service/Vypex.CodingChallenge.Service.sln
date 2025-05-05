@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vypex.CodingChallenge.API", "Vypex.CodingChallenge.API\Vypex.CodingChallenge.API.csproj", "{1DED6343-F764-4145-A57B-5A2209046916}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vypex.CodingChallenge.Application", "Vypex.CodingChallenge.Application\Vypex.CodingChallenge.Application.csproj", "{70699E25-2BBB-4F87-8730-2BCD8A8C552B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vypex.CodingChallenge.Test", "Vypex.CodingChallenge.Test\Vypex.CodingChallenge.Test.csproj", "{13CF4205-C157-47A1-8FAA-1E4D17AAEEBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{1DED6343-F764-4145-A57B-5A2209046916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DED6343-F764-4145-A57B-5A2209046916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DED6343-F764-4145-A57B-5A2209046916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70699E25-2BBB-4F87-8730-2BCD8A8C552B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70699E25-2BBB-4F87-8730-2BCD8A8C552B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70699E25-2BBB-4F87-8730-2BCD8A8C552B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70699E25-2BBB-4F87-8730-2BCD8A8C552B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CF4205-C157-47A1-8FAA-1E4D17AAEEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CF4205-C157-47A1-8FAA-1E4D17AAEEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CF4205-C157-47A1-8FAA-1E4D17AAEEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CF4205-C157-47A1-8FAA-1E4D17AAEEBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

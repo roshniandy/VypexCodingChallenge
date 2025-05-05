@@ -1,6 +1,7 @@
 
 using Scalar.AspNetCore;
 using Vypex.CodingChallenge.API;
+using Vypex.CodingChallenge.Application;
 using Vypex.CodingChallenge.Domain;
 using Vypex.CodingChallenge.Infrastructure;
 
@@ -15,8 +16,8 @@ namespace Vypex.CodingChallenge.Service
             builder.Services
                 .AddApiModule()
                 .AddDomainModule()
-                .AddInfrastructureModule(builder.Configuration.GetConnectionString("DefaultConnection") ??
-                    throw new ArgumentException("Connection string not specified"));
+                .AddInfrastructureModule(builder.Configuration)
+                .AddApplicationModule();
 
             builder.Services
                 .AddControllers()

@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vypex.CodingChallenge.Application\Vypex.CodingChallenge.Application.csproj" />
     <ProjectReference Include="..\Vypex.CodingChallenge.Domain\Vypex.CodingChallenge.Domain.csproj" />
-    <ProjectReference Include="..\Vypex.CodingChallenge.Infrastructure\Vypex.CodingChallenge.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

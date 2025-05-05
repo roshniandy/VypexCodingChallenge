@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vypex.CodingChallenge.API\Vypex.CodingChallenge.API.csproj" />
+    <ProjectReference Include="..\Vypex.CodingChallenge.Application\Vypex.CodingChallenge.Application.csproj" />
     <ProjectReference Include="..\Vypex.CodingChallenge.Domain\Vypex.CodingChallenge.Domain.csproj" />
     <ProjectReference Include="..\Vypex.CodingChallenge.Infrastructure\Vypex.CodingChallenge.Infrastructure.csproj" />
   </ItemGroup>
