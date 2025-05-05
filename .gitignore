@@ -2,7 +2,27 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-Vypex.CodingChallenge.Service/.vs
-/Vypex.CodingChallenge.Service/.vs
-/Vypex.CodingChallenge.Service/.vs/*
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/*
+Vypex.CodingChallenge.Service/.vs/
+Vypex.CodingChallenge.Service/.vs/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/obj/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/obj/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Application/obj/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Application/obj/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Infrastructure/bin/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Infrastructure/bin/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Infrastructure/obj/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Infrastructure/obj/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Application/bin/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Application/bin/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Domain/obj/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Domain/obj/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Service/bin/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Service/bin/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Service/obj/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Service/obj/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Test/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Test/*
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Domain/bin/
+Vypex.CodingChallenge.Service/Vypex.CodingChallenge.Domain/bin/*
