@@ -1,14 +1,37 @@
-<form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submit()">
-  <nz-form-item>
-    <nz-form-label>Name</nz-form-label>
-    <nz-form-control>
-      <input nz-input type="text" [formControl]="form.controls.name">
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control class="modal-buttons">
-      <button nz-button nzType="primary">Submit</button>
-      <button nz-button type="button" nzType="link" (click)="cancel()">Cancel</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+<h1>Leave Details for {{employee.name}}</h1>
+
+<button class="!rounded-[12px] !bg-[#126c49] !m-5" nz-button nzType="default" (click)="applyleave(employee)">+ Apply
+  Leave</button>
+
+<app-leave-form *ngIf="applyLeaveForm == true" [employee]="employee" [operation]="createOp"
+  [(updateLeaves)]="updateLeaves" [leaveDay]="leaveDay"></app-leave-form>
+
+<nz-table nzTemplateMode>
+  <thead>
+    <tr>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Total Days</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (leave of employeesLeaves$ | async; track leave.id) {
+    <tr>
+      <td>{{ leave.startDate | date:'yyyy-MM-dd' }}</td>
+      <td>{{ leave.endDate | date:'yyyy-MM-dd'}}</td>
+      <td>Total Days: {{ leave.startDate | dateDiff:leave.endDate }}</td>
+      <td class="flex items-center justify-between"><button nz-button nzType="default" (click)="edit(leave)"><nz-icon
+            nzType="edit" nzTheme="outline" /></button>
+
+        <button nz-button nzType="default" (click)="delete(leave.id)"><nz-icon nzType="delete" nzTheme="outline"
+            class="delete-icon"></nz-icon></button>
+      </td>
+    </tr>
+
+    <app-leave-form *ngIf="(leaveDay.id == leave.id && editLeaveForm == true)" [employee]="employee"
+      [operation]="editOp" [(updateLeaves)]="updateLeaves" [leaveDay]="leaveDay"></app-leave-form>
+
+    }
+  </tbody>
+</nz-table>

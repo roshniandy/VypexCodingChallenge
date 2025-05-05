@@ -1,15 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Employee } from '../models/employee';
+import { HttpService } from '../../common/services/http.service';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeApiService {
-  private readonly httpClient = inject(HttpClient);
-
-  private readonly baseUrl = 'https://localhost:7189/api';
+  private readonly httpClient = inject(HttpService);
 
   public getEmployees(): Observable<Array<Employee>> {
-    return this.httpClient.get<Array<Employee>>(`${this.baseUrl}/employees`);
+    return this.httpClient.get<Array<Employee>>('employee');
   }
+
 }

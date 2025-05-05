@@ -2,34 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.metadata.v9.bin
-/Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.projects.v9.bin
-/Vypex.CodingChallenge.Service/.vs/ProjectEvaluation/vypex.codingchallenge.service.strings.v9.bin
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/copilot-chat/183baa84/sessions/b12d7988-c7d0-4279-86ce-b5d1feaf0d9b
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/CodeChunks.db
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/CodeChunks.db-shm
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/CodeChunks.db-wal
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/SemanticSymbols.db
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/SemanticSymbols.db-shm
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/CopilotIndices/17.13.444.19527/SemanticSymbols.db-wal
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/config/applicationhost.config
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/DesignTimeBuild/.dtbcache.v2
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/FileContentIndex/046f4adb-79af-46df-a740-48fd770c25af.vsidx
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/FileContentIndex/391610a5-1cce-4072-9dee-cbd023e65494.vsidx
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/FileContentIndex/90af438b-2e51-47cb-bc54-21e57163902f.vsidx
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/FileContentIndex/d3807414-912b-4e9a-8230-4188a5cdd954.vsidx
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/TestStore/0/002.testlog
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/.futdcache.v2
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/.suo
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/DocumentLayout.backup.json
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/DocumentLayout.json
-/Vypex.CodingChallenge.Service/.vs/Vypex.CodingChallenge.Service/v17/TestStore/0/testlog.manifest
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.API.deps.json
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.API.dll
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.API.pdb
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Application.dll
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Application.pdb
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Domain.dll
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Domain.pdb
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Infrastructure.dll
-/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/Debug/net9.0/Vypex.CodingChallenge.Infrastructure.pdb
+/Vypex.CodingChallenge.Service/.vs/*
+/Vypex.CodingChallenge.Service/Vypex.CodingChallenge.API/bin/*

@@ -1,13 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { EditEmployeeComponent } from './edit-employee.component';
+import { Employee } from '../models';
 
 // TODO: Define modal result type
 export type EditEmployeeResult = {};
 
 // TODO: Define modal bindings
 export interface EditEmployeeBindings {
-  id: number;
+  selectedEmployee: Employee;
 }
 
 @Injectable()

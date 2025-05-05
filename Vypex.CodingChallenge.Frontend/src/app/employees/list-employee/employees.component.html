@@ -1,0 +1,26 @@
+<nz-input-group class="!bg-[#20c585] !w-1/2 !mb-5 !ml-5" [nzSuffix]="suffixIcon">
+  <input nz-input placeholder="Search employees" (input)="onSearchChange($event)" />
+</nz-input-group>
+<ng-template #suffixIcon>
+  <i nz-icon nzType="search"></i>
+</ng-template>
+
+<nz-table nzTemplateMode>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (employee of filteredEmployees$ | async; track employee.id) {
+    <tr>
+      <td>{{ employee.name }}</td>
+      <td hidden>{{ employee.id }}</td>
+      <td><button nz-button nzType="default" (click)="edit(employee)">✏️ Edit</button>
+      </td>
+      <td></td>
+    </tr>
+    }
+  </tbody>
+</nz-table>

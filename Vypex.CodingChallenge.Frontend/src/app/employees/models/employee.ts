@@ -1,4 +1,7 @@
-export interface Employee {
-  id: number;
-  name: string;
+import { LeaveDay } from "./leaveDay";
+
+export class Employee {
+  public id: string = '';
+  public name: string = ''
+  public leaveDays: LeaveDay[] = [];
 }
