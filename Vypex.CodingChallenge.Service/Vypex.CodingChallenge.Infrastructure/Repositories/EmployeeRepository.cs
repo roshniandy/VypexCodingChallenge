@@ -7,7 +7,7 @@ namespace Vypex.CodingChallenge.Infrastructure.Repositories
 {
     public class EmployeeRepository(AppDbContext dbContext) :IEmployeeRepository
     {
-        public async Task<List<Employee>> GetAllAsync() => await dbContext.Employees.ToListAsync();
+        public async Task<List<Employee>> GetAllAsync() => await dbContext.Employees.Include(e => e.LeaveDays).ToListAsync();
 
         public async Task<Employee> GetAsync(Guid id)
         {

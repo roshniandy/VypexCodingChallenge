@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Vypex.CodingChallenge.Application.DTOs;
 using Vypex.CodingChallenge.Application.Interfaces;
 
 namespace Vypex.CodingChallenge.API.Controllers
@@ -24,7 +25,14 @@ namespace Vypex.CodingChallenge.API.Controllers
                 return NotFound();
 
             return Ok(employee);
-        } 
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateEmployee(UpdateEmployeeDto dto)
+        {
+            await employeeService.UpdateAsync(dto);
+            return Ok();
+        }
 
         //[HttpPost]
         //public async Task<IActionResult> CreateEmployee(CreateEmployeeDto dto)

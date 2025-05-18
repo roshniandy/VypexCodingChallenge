@@ -1,4 +1,4 @@
 ﻿namespace Vypex.CodingChallenge.Application.DTOs
 {
-        public record UpdateEmployeeDto(int Id, string Name);
+        public record UpdateEmployeeDto(string Id, string Name);
 }
