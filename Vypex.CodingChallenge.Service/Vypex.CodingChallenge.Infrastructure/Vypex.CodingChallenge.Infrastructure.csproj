@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Vypex.CodingChallenge.Domain\Vypex.CodingChallenge.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
