@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
-import { EditEmployeeBindings, EditEmployeeResult } from './edit-employee.modal';
-import { DateDiffPipe } from '../../common/dateDiff.pipe';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { LeaveDay } from '../models/leaveDay';
-import { Employee } from '../models';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { Operation } from '../models/operation.enum';
-import { LeaveFormComponent } from '../../Leaves/leave-form/leave-form.component';
-import { Observable } from 'rxjs';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { BehaviorSubject } from 'rxjs';
+import { DateDiffPipe } from '../../common/dateDiff.pipe';
+import { validateForm } from '../../common/validateForm';
+import { LeaveFormComponent } from '../../Leaves/leave-form/leave-form.component';
+import { Employee } from '../models/employee';
+import { LeaveDay } from '../models/leaveDay';
+import { EmployeeApiService } from '../services/employee-api.service';
 import { LeaveApiService } from '../services/leave-api.service';
+import { EditEmployeeBindings, EditEmployeeResult } from './edit-employee.modal';
 
 @Component({
   selector: 'app-edit-employee',
@@ -36,31 +37,36 @@ import { LeaveApiService } from '../services/leave-api.service';
   ]
 })
 export class EditEmployeeComponent {
-  private readonly leaveApiService = inject(LeaveApiService);
   private readonly modalRef = inject(NzModalRef<EditEmployeeComponent, EditEmployeeResult>);
   private readonly modalData = inject<EditEmployeeBindings>(NZ_MODAL_DATA);
   private readonly fb = inject(FormBuilder);
-  public message = inject(NzMessageService);
 
-
-  public employee: Employee = this.modalData.selectedEmployee;
-  public editOp: Operation = Operation.edit;
-  public createOp: Operation = Operation.create;
-  public leaveDay: LeaveDay = new LeaveDay();
+  public employee = this.modalData.selectedEmployee;
   public applyLeaveForm: boolean = false;
   public editLeaveForm: boolean = false;
+  public leaveDay: LeaveDay = new LeaveDay();
+
+  public message = inject(NzMessageService);
+
+  private readonly leaveApiService = inject(LeaveApiService);
+  private readonly empApiService = inject(EmployeeApiService);
+
+  private employeeLeavesSubject = new BehaviorSubject<LeaveDay[]>([]);
+  public employeesLeaves$ = this.employeeLeavesSubject.asObservable();
 
 
-  public employeesLeaves$: Observable<Array<LeaveDay>> = new Observable<Array<LeaveDay>>();;
-  public updateLeaves = signal("Update leave signal");
-
-  protected cancel(): void {
-    this.modalRef.triggerCancel();
-  }
+  protected readonly form = this.fb.group({
+    name: this.fb.nonNullable.control(this.employee.name, Validators.required),
+    id: this.fb.nonNullable.control(this.employee.id, Validators.required),
+    leaveForm: this.fb.group({
+      startDate: this.fb.nonNullable.control(this.leaveDay.startDate, Validators.required),
+      endDate: this.fb.nonNullable.control(this.leaveDay.endDate, Validators.required),
+      reason: this.fb.nonNullable.control(this.leaveDay.reason),
+    })
+  });
 
   constructor() {
     effect(() => {
-      console.log(`The update is: ${this.updateLeaves()}`);
       this.loadLeaves();
       this.applyLeaveForm = false;
       this.editLeaveForm = false;
@@ -68,26 +74,105 @@ export class EditEmployeeComponent {
   }
 
   protected loadLeaves() {
+    this.leaveApiService.getEmployeeLeaves(this.employee.id).subscribe(
+      (data) => {
+        this.employeeLeavesSubject.next(data);
+      })
+  }
 
-    this.employeesLeaves$ = this.leaveApiService.getEmployeeLeaves(this.employee.id);
+
+  protected cancel(): void {
+    this.modalRef.triggerCancel();
+  }
+
+  protected submit(): void {
+    if (!validateForm(this.form)) return;
+
+    const raw = this.form.value;
+
+    if (this.modalData.selectedEmployee.name != raw.name && raw.name) {
+      const empPayload = {
+        id: raw.id,
+        name: raw.name
+      };
+
+
+      this.empApiService.updateEmployee(empPayload).subscribe({
+        next: () => {
+          this.message.success('Employee name updated successfully!');
+        },
+        error: (err) => {
+          this.message.error('Failed to update employee name');
+        }
+      });
+
+    }
+
+    if (this.form.get('leaveForm')?.dirty) {
+      const payload = {
+        employeeId: raw.id,
+        startDate: raw.leaveForm?.startDate,
+        endDate: raw.leaveForm?.endDate,
+        reason: raw.leaveForm?.reason
+      };
+
+
+      if (this.applyLeaveForm) {
+        this.leaveApiService.addLeaves(payload).subscribe({
+          next: () => {
+            this.message.success('Leave created successfully!');
+          },
+          error: (err) => {
+            this.message.error('Failed to submit leave');
+          }
+        });
+      }
+      else if (this.editLeaveForm) {
+        this.leaveApiService.updateLeaves(payload).subscribe({
+          next: () => {
+            this.message.success('Leave updated successfully!');
+          },
+          error: (err) => {
+            this.message.error('Failed to update leave');
+          }
+        });
+      }
+
+      setTimeout(() => {
+        this.loadLeaves();
+      }, 10);
+    }
+  }
+
+  protected applyleave(employee: Employee): void {
+    this.applyLeaveForm = true;
+    this.editLeaveForm = false;
+    this.leaveDay = new LeaveDay();
+    this.form.patchValue({
+      leaveForm: this.leaveDay
+    });
   }
 
   protected delete(leaveId: string): void {
     this.leaveApiService.deleteLeaves(leaveId).subscribe({
       next: () => {
         this.message.success('Leave deleted');
-        this.updateLeaves.set(`Deleted ${leaveId}`);
+        setTimeout(() => {
+          this.loadLeaves();
+        }, 10);
       },
       error: () => { this.message.error('Failed to delete leave') }
     });
   }
 
   protected edit(leave: LeaveDay): void {
-    this.leaveDay = leave;
     this.editLeaveForm = true;
-  }
+    this.applyLeaveForm = false;
 
-  protected applyleave(employee: Employee): void {
-    this.applyLeaveForm = true;
+    this.leaveDay = leave;
+
+    this.form.patchValue({
+      leaveForm: leave
+    });
   }
 }

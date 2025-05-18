@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LeaveDay } from '../models/leaveDay';
 import { HttpService } from '../../common/services/http.service';
+import { LeaveDay } from '../models/leaveDay';
 
 @Injectable({ providedIn: 'root' })
 export class LeaveApiService {

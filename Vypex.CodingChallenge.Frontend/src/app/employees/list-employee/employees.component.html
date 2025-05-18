@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Total Leaves</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
     <tr>
       <td>{{ employee.name }}</td>
       <td hidden>{{ employee.id }}</td>
+      <td>{{employee.leaveDays.length}}</td>
       <td><button nz-button nzType="default" (click)="edit(employee)">✏️ Edit</button>
       </td>
       <td></td>

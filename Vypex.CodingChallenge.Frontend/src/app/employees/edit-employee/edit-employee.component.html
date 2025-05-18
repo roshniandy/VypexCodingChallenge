@@ -1,10 +1,27 @@
-<h1>Leave Details for {{employee.name}}</h1>
+<form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submit()">
+  <nz-form-item>
+    <nz-form-label>Name</nz-form-label>
+    <nz-form-control>
+      <input nz-input type="text" [formControl]="form.controls.name">
+    </nz-form-control>
+  </nz-form-item>
+  <button type="button" class="!rounded-[12px] !bg-[#126c49] !m-5" nz-button nzType="default" (click)="applyleave(employee)">+ Apply
+    Leave</button>
 
-<button class="!rounded-[12px] !bg-[#126c49] !m-5" nz-button nzType="default" (click)="applyleave(employee)">+ Apply
-  Leave</button>
+  <nz-form-item>
+    <nz-form-control>
+      <app-leave-form *ngIf="applyLeaveForm == true || editLeaveForm== true" [leaveForm]="form.controls.leaveForm" [employee]="employee" [leaveDay]="leaveDay"></app-leave-form>
+    </nz-form-control>
+  </nz-form-item>
 
-<app-leave-form *ngIf="applyLeaveForm == true" [employee]="employee" [operation]="createOp"
-  [(updateLeaves)]="updateLeaves" [leaveDay]="leaveDay"></app-leave-form>
+  <nz-form-item>
+    <nz-form-control class="modal-buttons">
+      <button nz-button nzType="primary" type="submit">Submit</button>
+      <button nz-button type="button" nzType="link" (click)="cancel()">Cancel</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
 
 <nz-table nzTemplateMode>
   <thead>
@@ -22,16 +39,12 @@
       <td>{{ leave.endDate | date:'yyyy-MM-dd'}}</td>
       <td>Total Days: {{ leave.startDate | dateDiff:leave.endDate }}</td>
       <td class="flex items-center justify-between"><button nz-button nzType="default" (click)="edit(leave)"><nz-icon
-            nzType="edit" nzTheme="outline" /></button>
+                   nzType="edit" nzTheme="outline" /></button>
 
         <button nz-button nzType="default" (click)="delete(leave.id)"><nz-icon nzType="delete" nzTheme="outline"
-            class="delete-icon"></nz-icon></button>
+                   class="delete-icon"></nz-icon></button>
       </td>
     </tr>
-
-    <app-leave-form *ngIf="(leaveDay.id == leave.id && editLeaveForm == true)" [employee]="employee"
-      [operation]="editOp" [(updateLeaves)]="updateLeaves" [leaveDay]="leaveDay"></app-leave-form>
-
     }
   </tbody>
 </nz-table>

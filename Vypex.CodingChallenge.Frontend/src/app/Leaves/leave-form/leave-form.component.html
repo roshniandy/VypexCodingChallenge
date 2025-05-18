@@ -1,32 +1,20 @@
-<form nz-form nzLayout="vertical" [formGroup]="leaveForm" (ngSubmit)="submit()">
-  <nz-form-item>
-    <nz-form-control>
-      <input nz-input type="text" hidden [formControl]="leaveForm.controls.name">
-      <input nz-input type="text" hidden [formControl]="leaveForm.controls.employeeId">
-    </nz-form-control>
-  </nz-form-item>
+<div [formGroup]="leaveForm">
   <nz-form-item>
     <nz-form-label>Start Date:</nz-form-label>
     <nz-form-control>
-      <nz-date-picker [formControl]="leaveForm.controls.startDate"></nz-date-picker>
+      <nz-date-picker formControlName="startDate" (blur)="onTouched()"></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label>End Date:</nz-form-label>
     <nz-form-control>
-      <nz-date-picker [formControl]="leaveForm.controls.endDate"></nz-date-picker>
+      <nz-date-picker formControlName="endDate" (blur)="onTouched()"></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label>Reason:</nz-form-label>
     <nz-form-control>
-      <textarea nz-input type="text" [formControl]="leaveForm.controls.reason"></textarea>
+      <textarea nz-input rows="4" formControlName="reason" (blur)="onTouched()"></textarea>
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item>
-    <nz-form-control class="modal-buttons">
-      <button nz-button nzType="primary">Submit</button>
-    </nz-form-control>
-  </nz-form-item>
-
-</form>
+</div>

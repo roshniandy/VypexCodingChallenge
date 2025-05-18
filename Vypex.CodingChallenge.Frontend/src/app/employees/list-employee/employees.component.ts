@@ -1,10 +1,10 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { BehaviorSubject, combineLatest, map, Observable, startWith } from 'rxjs';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { EditEmployeeModal } from '../edit-employee/edit-employee.modal';
 import { Employee } from '../models/employee';
 import { EmployeeApiService } from '../services/employee-api.service';
@@ -29,11 +29,22 @@ export class EmployeesComponent {
   private readonly editEmployeeModal = inject(EditEmployeeModal);
 
   private search$ = new BehaviorSubject<string>('');
-  public employees$!: Observable<Employee[]>;
   public filteredEmployees$!: Observable<Employee[]>;
 
+  private employeesSubject = new BehaviorSubject<Employee[]>([]);
+  public employees$ = this.employeesSubject.asObservable();
+
+
   ngOnInit(): void {
-    this.employees$ = this.employeeApiService.getEmployees();
+    this.loadEmployees();
+  }
+
+  loadEmployees() {
+    this.employeeApiService.getEmployees().subscribe(
+      (data) => {
+        this.employeesSubject.next(data);
+      }
+    )
 
     this.filteredEmployees$ = combineLatest([
       this.employees$,
@@ -57,6 +68,7 @@ export class EmployeesComponent {
     this.editEmployeeModal.open({ selectedEmployee: employee })
       .afterClose
       .subscribe(result => {
+        this.loadEmployees();
         if (result === undefined) return;
 
       });
