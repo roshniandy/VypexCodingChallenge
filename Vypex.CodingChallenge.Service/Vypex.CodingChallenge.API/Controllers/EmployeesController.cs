@@ -34,12 +34,12 @@ namespace Vypex.CodingChallenge.API.Controllers
             return Ok();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateEmployee(CreateEmployeeDto dto)
-        //{
-        //    await employeeService.AddAsync(dto);
-        //    return Ok();
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeDto dto)
+        {
+            await employeeService.AddAsync(dto);
+            return Ok();
+        }
 
     }
 
